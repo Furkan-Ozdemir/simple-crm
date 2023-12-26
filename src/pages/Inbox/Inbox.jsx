@@ -19,12 +19,12 @@ export default function Inbox() {
           className="inbox__nav__image"
         />
         <div className="inbox__nav__search">
-          <input type="search" id="gsearch" name="gsearch" />
+          <input type="search" name="search" placeholder="Search" />
           <button type="submit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="20"
+              height="20"
               fill="currentColor"
               className="bi bi-search"
               viewBox="0 0 16 16"

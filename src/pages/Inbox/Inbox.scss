@@ -18,7 +18,7 @@
       }
       input {
         font-size: 20px;
-        padding: 8px 8px;
+        padding: 18px 18px;
         background-color: #fff;
         border-radius: 1.4rem;
         color: #333;
@@ -27,9 +27,6 @@
         box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
         &:focus {
           outline: none;
-        }
-        &::placeholder {
-          color: transparent;
         }
       }
       button {

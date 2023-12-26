@@ -2,7 +2,17 @@ import "./Login.scss";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { auth } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuthValue } from "../../AuthContext";
+
 export default function Login() {
+  const navigate = useNavigate();
+  const { setTimeActive } = useAuthValue();
   const [signUpClicked, setSignUpClicked] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,6 +75,44 @@ export default function Login() {
         }
       );
     }
+
+    if (signUpClicked) {
+      createUser();
+    } else {
+      //login();
+    }
+  };
+
+  const createUser = async () => {
+    try {
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      toast.success(
+        <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          Successfully created account !
+        </span>,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          toastId: "account-created",
+          pauseOnFocusLoss: true,
+        }
+      );
+      sendEmailVerification(auth.currentUser);
+      setTimeActive(true);
+      navigate("/verify-email");
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -107,6 +155,7 @@ export default function Login() {
               placeholder=" "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
             <label className="label">Password</label>
           </div>
@@ -117,6 +166,7 @@ export default function Login() {
                 placeholder=" "
                 value={repeatPassword}
                 onChange={(e) => setRepeatPassword(e.target.value)}
+                autoComplete="current-password"
               />
               <label className="label">Repeat Password</label>
             </div>
