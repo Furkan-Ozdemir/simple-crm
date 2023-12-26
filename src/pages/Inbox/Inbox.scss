@@ -1,7 +1,7 @@
 .inbox {
   &__nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr;
     background-color: #fff;
 
     &__image {
@@ -10,7 +10,7 @@
       justify-self: start;
     }
     &__search {
-      place-self: center start;
+      place-self: center;
       position: relative;
 
       input[type="search"]::-webkit-search-cancel-button {
