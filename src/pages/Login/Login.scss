@@ -1,0 +1,116 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.4rem;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0 0.5rem 3.5rem rgba(0, 0, 0, 0.2);
+
+  &__imageContainer__image {
+    width: 350px;
+    padding: 5rem;
+  }
+
+  &__right {
+    padding: 5rem;
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+
+      input {
+        font-size: 20px;
+        width: 100%;
+        padding: 8px 0;
+        padding-right: 30px; // To avoid overlapping with the clear button
+        color: #333;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        transition: border-color 250ms;
+        background-color: transparent;
+
+        &:focus {
+          outline: none;
+          border-bottom-color: #777;
+        }
+        &::placeholder {
+          color: transparent;
+        }
+        &::-webkit-contacts-auto-fill-button {
+          visibility: hidden;
+          pointer-events: none;
+          position: absolute;
+        }
+      }
+      input:focus + .label,
+      input:not(:placeholder-shown) + .label {
+        transform: translateY(-100%) scale(0.75);
+      }
+
+      &__email,
+      &__password {
+        position: relative;
+        .label {
+          position: absolute;
+          top: 8px;
+          left: 0;
+          color: #43454e;
+          pointer-events: none;
+          transform-origin: left center;
+          transition: transform 250ms;
+          font-size: 1.5rem;
+        }
+      }
+
+      &__welcome-text {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 4rem;
+
+        &__signup {
+          font-size: 1.5rem;
+          font-weight: normal;
+          margin-top: 2rem;
+          color: #a7a19a;
+          &__button {
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            margin-left: 1rem;
+            color: #7868e6;
+            font-weight: bold;
+            transition: color 250ms;
+
+            &:hover {
+              color: #9488e6;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      &__button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: background-color 250ms;
+
+        &:hover {
+          background-color: #333;
+        }
+      }
+    }
+  }
+}

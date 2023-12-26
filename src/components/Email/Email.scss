@@ -1,0 +1,52 @@
+.email {
+  border-radius: 0.7rem;
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  &__date {
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+  }
+  &__star {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      color: #f1c40f;
+    }
+  }
+
+  &__sender {
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 0.5rem;
+    margin-left: 3rem;
+    &__avatar {
+      img {
+        width: 50px;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+      }
+    }
+    &__fields {
+      &__name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      &__topic {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+      }
+      &__email {
+        color: #7f8c8d;
+      }
+    }
+  }
+}
