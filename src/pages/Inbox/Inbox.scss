@@ -126,15 +126,17 @@
             align-items: center;
             cursor: pointer;
             gap: 0.5rem;
+            color: #7f8c8d;
+            &:hover {
+              color: #232946;
+            }
             svg {
               width: 30px;
               height: 30px;
-              color: #7f8c8d;
             }
             span {
               font-size: 1.5rem;
               font-weight: 500;
-              color: #7f8c8d;
             }
           }
         }
