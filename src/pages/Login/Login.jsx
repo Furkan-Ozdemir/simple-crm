@@ -146,6 +146,7 @@ export default function Login() {
               placeholder=" "
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
             />
             <label className="label">Email</label>
           </div>
