@@ -13,6 +13,15 @@ export default function EmailList() {
       <Email />
       <Email />
       <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
+      <Email />
     </div>
   );
 }

@@ -82,6 +82,8 @@
     &__aside {
       display: grid;
       grid-template-columns: 38.3rem;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
     &__email {
       &__header {
@@ -100,6 +102,7 @@
             border-radius: 50%;
             aspect-ratio: 1/1;
             object-fit: cover;
+            place-self: center;
           }
           &__person {
             place-self: center;
@@ -135,6 +138,17 @@
               color: #7f8c8d;
             }
           }
+        }
+      }
+      &__text {
+        padding-inline: 11.8rem;
+        &__title {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+        &__body {
+          font-size: 1.5rem;
         }
       }
     }

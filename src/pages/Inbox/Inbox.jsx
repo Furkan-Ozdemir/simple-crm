@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import EmailList from "../../components/EmailList/EmailList";
 import "./Inbox.scss";
 export default function Inbox() {
+  useEffect(() => {
+    const nav = document.getElementsByClassName("inbox__nav")[0];
+    const tabs = document.getElementsByClassName("inbox__tabs")[0];
+    const aside = document.getElementsByClassName("inbox__main__aside")[0];
+    aside.style.height = `${
+      window.innerHeight - nav.offsetHeight - tabs.offsetHeight - 1
+    }px`;
+  });
   return (
     <>
       <nav className="inbox__nav">
@@ -132,6 +141,19 @@ export default function Inbox() {
               </div>
             </div>
           </header>
+          <div className="inbox__main__email__text">
+            <div className="inbox__main__email__text__title">
+              RE: Hire me please
+            </div>
+            <div className="inbox__main__email__text__body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+              doloremque laudantium non, ipsa sequi libero inventore quibusdam
+              debitis dolorem consectetur quisquam, ab sit fugit eligendi iure
+              tenetur. Dolore nostrum officia impedit ratione fuga, voluptates
+              iusto similique soluta praesentium repellendus totam ad sit,
+              delectus iure rerum ducimus aperiam. Quis, quasi possimus.
+            </div>
+          </div>
         </div>
       </main>
     </>
