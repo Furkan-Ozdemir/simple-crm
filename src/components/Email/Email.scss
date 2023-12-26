@@ -4,6 +4,14 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: #d9d4e7;
+  cursor: pointer;
+  transition: all 250ms;
+  &:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.16),
+      0 0.5rem 1rem rgba(0, 0, 0, 0.23);
+  }
   &__date {
     position: absolute;
     top: 2rem;
@@ -30,7 +38,7 @@
         width: 50px;
         border-radius: 50%;
         aspect-ratio: 1/1;
-        object-fit: contain;
+        object-fit: cover;
       }
     }
     &__fields {

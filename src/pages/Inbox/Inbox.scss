@@ -76,8 +76,67 @@
       }
     }
   }
-  &__aside {
+  &__main {
     display: grid;
     grid-template-columns: 38.3rem 1fr;
+    &__aside {
+      display: grid;
+      grid-template-columns: 38.3rem;
+    }
+    &__email {
+      &__header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 10rem;
+        place-items: center;
+        margin-top: 2rem;
+        margin-left: 2rem;
+
+        .image_and_name {
+          place-self: center start;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          img {
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+          }
+          &__person {
+            place-self: center;
+            &__name {
+              font-size: 1.5rem;
+              font-weight: bold;
+              margin-bottom: 0.5rem;
+            }
+            &__date {
+              color: #7f8c8d;
+            }
+          }
+        }
+        &__actions {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          place-items: center;
+          gap: 1rem;
+          &__svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            gap: 0.5rem;
+            svg {
+              width: 30px;
+              height: 30px;
+              color: #7f8c8d;
+            }
+            span {
+              font-size: 1.5rem;
+              font-weight: 500;
+              color: #7f8c8d;
+            }
+          }
+        }
+      }
+    }
   }
 }

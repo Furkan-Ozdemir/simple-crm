@@ -17,10 +17,7 @@ export default function Email() {
       </div>
       <div className="email__sender">
         <div className="email__sender__avatar">
-          <img
-            src="https://www.pngkey.com/png/detail/349-3499617_person-placeholder-person-placeholder.png"
-            alt=""
-          />
+          <img src="/images/placeholder-person.jpg" alt="" />
         </div>
         <div className="email__sender__fields">
           <div className="email__sender__fields__name">John Smith</div>
