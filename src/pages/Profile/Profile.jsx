@@ -1,11 +1,26 @@
 import "./Profile.scss";
 import { useAuthValue } from "../../AuthContext";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { currentUser } = useAuthValue();
   const [showProfile, setShowProfile] = useState(false);
   console.log(currentUser);
+
+  //when signed out redirect to login page
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className={`count`} onClick={() => setShowProfile(!showProfile)}>
@@ -45,7 +60,7 @@ export default function Profile() {
             } `}
           </span>
         </p>
-        <button className="profile__signOut">
+        <button className="profile__signOut" onClick={handleSignOut}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

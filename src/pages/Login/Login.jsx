@@ -6,6 +6,7 @@ import { auth } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../AuthContext";
@@ -79,7 +80,7 @@ export default function Login() {
     if (signUpClicked) {
       createUser();
     } else {
-      //login();
+      handleLogin();
     }
   };
 
@@ -111,7 +112,97 @@ export default function Login() {
       navigate("/verify-email");
       console.log(response);
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
+      if (e.message === "Firebase: Error (auth/email-already-in-use).") {
+        return toast.error(
+          <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            Email already in use !
+          </span>,
+          {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            toastId: "email-already-in-use",
+            pauseOnFocusLoss: true,
+          }
+        );
+      }
+    }
+  };
+  const handleLogin = async () => {
+    if (signUpClicked) return;
+    else {
+      try {
+        const response = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        if (!auth.currentUser.emailVerified) {
+          setTimeActive(true);
+          toast.success(
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+              You need to verify your email !
+            </span>,
+            {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              toastId: "verify your email",
+              pauseOnFocusLoss: true,
+            }
+          );
+          navigate("/verify-email");
+        }
+        navigate("/inbox");
+        console.log(response);
+      } catch (e) {
+        console.log(e.message);
+        if (e.message === "Firebase: Error (auth/invalid-credential).") {
+          return toast.error(
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+              Password or Email is wrong !
+            </span>,
+            {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              toastId: "wrong-password",
+              pauseOnFocusLoss: true,
+            }
+          );
+        }
+        if (e.message === "Firebase: Error (auth/user-not-found).") {
+          return toast.error(
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+              User not found !
+            </span>,
+            {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              toastId: "user-not-found",
+              pauseOnFocusLoss: true,
+            }
+          );
+        }
+      }
     }
   };
 
