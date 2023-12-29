@@ -226,7 +226,15 @@ export default function Login() {
                 {signUpClicked ? (
                   <span onClick={() => setSignUpClicked(false)}>Login</span>
                 ) : (
-                  <span onClick={() => setSignUpClicked(true)}>Signup</span>
+                  <span
+                    onClick={() => {
+                      setSignUpClicked(true);
+                      setEmail("");
+                      setPassword("");
+                    }}
+                  >
+                    Signup
+                  </span>
                 )}
               </div>
             </div>

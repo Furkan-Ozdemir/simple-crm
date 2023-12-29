@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -15,6 +16,22 @@ export default function Profile() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      toast.success(
+        <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          Signed out successfully !
+        </span>,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          toastId: "sign-out-success",
+          pauseOnFocusLoss: true,
+        }
+      );
       navigate("/");
     } catch (error) {
       console.log(error);
