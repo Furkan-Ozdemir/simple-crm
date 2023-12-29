@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 import { Navigate } from "react-router-dom";
 
-// Custom route guard
 const ProtectedRoute = ({ element, redirectTo, condition }) => {
   return condition ? element : <Navigate to={redirectTo} replace />;
 };
@@ -21,12 +20,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [timeActive, setTimeActive] = useState(false);
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
-
-    return () => unsubscribe();
-  }, []);
+  }, [currentUser]);
   return (
     <>
       <ToastContainer />

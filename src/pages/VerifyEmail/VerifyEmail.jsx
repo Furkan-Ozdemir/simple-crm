@@ -14,7 +14,7 @@ export default function VerifyEmail() {
         .then(() => {
           if (currentUser?.emailVerified) {
             clearInterval(interval);
-            navigate("/inbox");
+            window.location.href = "/";
           }
         })
         .catch((err) => {

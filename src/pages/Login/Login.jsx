@@ -18,6 +18,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -161,9 +162,11 @@ export default function Login() {
             }
           );
           navigate("/verify-email");
+          console.log(response);
+        } else {
+          navigate("/inbox");
+          console.log(response);
         }
-        navigate("/inbox");
-        console.log(response);
       } catch (e) {
         console.log(e.message);
         if (e.message === "Firebase: Error (auth/invalid-credential).") {
@@ -224,7 +227,16 @@ export default function Login() {
               {signUpClicked ? null : "Not a member yet ?"}
               <div className="loginContainer__right__form__welcome-text__signup__button">
                 {signUpClicked ? (
-                  <span onClick={() => setSignUpClicked(false)}>Login</span>
+                  <span
+                    onClick={() => {
+                      setSignUpClicked(false);
+                      setEmail("");
+                      setPassword("");
+                      setRepeatPassword("");
+                    }}
+                  >
+                    Login
+                  </span>
                 ) : (
                   <span
                     onClick={() => {
