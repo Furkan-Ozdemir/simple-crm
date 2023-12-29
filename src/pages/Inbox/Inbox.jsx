@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import EmailList from "../../components/EmailList/EmailList";
 import "./Inbox.scss";
+import Profile from "../Profile/Profile";
 export default function Inbox() {
   useEffect(() => {
     const nav = document.getElementsByClassName("inbox__nav")[0];
@@ -32,6 +33,9 @@ export default function Inbox() {
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
           </button>
+        </div>
+        <div className="inbox__nav__user">
+          <Profile />
         </div>
       </nav>
       <div className="inbox__tabs">

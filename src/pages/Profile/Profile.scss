@@ -1,0 +1,74 @@
+.tag {
+  padding: 4px 8px;
+  border-radius: 20px;
+
+  &.approved {
+    background-color: #e0fbf6;
+    color: #58c2a9;
+    font-size: 1.5rem;
+  }
+
+  &.waiting {
+    background-color: #f7f8fc;
+    color: #a0a6b5;
+  }
+}
+.count {
+  font-size: 36px;
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  background-color: #623ce8;
+  color: #fff;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  &.hide {
+    display: none;
+  }
+}
+
+.profile {
+  font-size: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 2rem;
+  position: absolute;
+  right: 1rem;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
+
+  &__close {
+    cursor: pointer;
+    place-self: center end;
+  }
+  &__email {
+    background-color: #ece7fe;
+    color: #8972f3;
+    padding: 4px 8px;
+    border-radius: 20px;
+  }
+  &__signOut {
+    grid-column: 1/-1;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 250ms;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  &.hide {
+    display: none;
+  }
+}
