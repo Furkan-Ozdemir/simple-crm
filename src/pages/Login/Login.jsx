@@ -161,9 +161,11 @@ export default function Login() {
               pauseOnFocusLoss: true,
             }
           );
+          sessionStorage.setItem("loggedin",true);
           navigate("/verify-email");
           console.log(response);
         } else {
+          sessionStorage.setItem("loggedin", true);
           navigate("/inbox");
           console.log(response);
         }

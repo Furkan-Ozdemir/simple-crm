@@ -12,8 +12,9 @@ import { useEffect } from "react";
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ element, redirectTo, condition }) => {
-  return condition ? element : <Navigate to={redirectTo} replace />;
+const ProtectedRoute = ({ element, redirectTo }) => {
+  const isLoggedIn = sessionStorage.getItem("loggedin") === "true";
+  return isLoggedIn ? element : <Navigate to={redirectTo} replace />;
 };
 
 function App() {

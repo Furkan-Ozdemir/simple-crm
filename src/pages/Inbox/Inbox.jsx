@@ -10,6 +10,15 @@ export default function Inbox() {
     aside.style.height = `${
       window.innerHeight - nav.offsetHeight - tabs.offsetHeight - 1
     }px`;
+    const emailBody = document.getElementsByClassName(
+      "inbox__main__email__text__body"
+    )[0];
+    const emailHeader = document.getElementsByClassName(
+      "inbox__main__email__header"
+    )[0];
+    emailBody.style.height = `${
+      window.innerHeight - nav.offsetHeight - tabs.offsetHeight - emailHeader.offsetHeight
+    }px`;
   });
   return (
     <>
@@ -150,12 +159,7 @@ export default function Inbox() {
               RE: Hire me please
             </div>
             <div className="inbox__main__email__text__body">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-              doloremque laudantium non, ipsa sequi libero inventore quibusdam
-              debitis dolorem consectetur quisquam, ab sit fugit eligendi iure
-              tenetur. Dolore nostrum officia impedit ratione fuga, voluptates
-              iusto similique soluta praesentium repellendus totam ad sit,
-              delectus iure rerum ducimus aperiam. Quis, quasi possimus.
+              numquam impedit reiciendis dicta sunt, delectus voluptates blanditiis cum quas neque? Hic, iusto quas ex, repellendus eveniet et aperiam possimus adipisci neque illum quis quidem? Quam, minima dolorem eos quae tempora consequatur consequuntur facere quod sint vitae quis assumenda. Totam eveniet quos officiis possimus, ipsa nobis omnis cumque impedit magnam consequuntur veritatis dolores sed repellendus deleniti non et nihil molestiae exercitationem, repellat veniam. Expedita veniam, tempore obcaecati quasi, quidem sit suscipit odit quaerat amet aperiam rem dolore consectetur natus aut magni repellendus dolorem, nostrum ea vitae tempora. Voluptas assumenda deleniti voluptates obcaecati odit voluptatibus earum molestiae, nihil nostrum maiores laborum, labore a aliquam aliquid harum minus enim, necessitatibus libero id. Culpa q, deserunt? Delectus deserunt unde ad et commodi omnis quisquam temporibus expedita officia natus soluta autem voluptas, maiores assumen
             </div>
           </div>
         </div>

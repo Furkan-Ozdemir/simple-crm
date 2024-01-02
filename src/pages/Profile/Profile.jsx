@@ -32,6 +32,7 @@ export default function Profile() {
           pauseOnFocusLoss: true,
         }
       );
+      sessionStorage.removeItem("loggedin");
       navigate("/");
     } catch (error) {
       console.log(error);
