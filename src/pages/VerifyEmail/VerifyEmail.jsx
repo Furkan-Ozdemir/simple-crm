@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import { sendEmailVerification } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import styles from "./VerifyEmail.module.scss";
 
 export default function VerifyEmail() {
   const { currentUser } = useAuthValue();
@@ -48,13 +49,17 @@ export default function VerifyEmail() {
   }, [timeActive, time, setTimeActive]);
 
   return (
-    <div>
-      <h1>Verify your email</h1>
-      <p>
-        We sent an email to {currentUser?.email}. Please click the link in the
-        email to verify your email address.
+    <div className={styles.container}>
+      <h1 className={styles.header}>Verify your email</h1>
+      <p className={styles.text}>
+        We sent an email to <span>{currentUser?.email}</span> . Please click the
+        link in the email to verify your email address.
       </p>
-      <button onClick={resendEmail} disabled={timeActive}>
+      <button
+        onClick={resendEmail}
+        disabled={timeActive}
+        className={styles.button}
+      >
         Resend email {timeActive && time}
       </button>
     </div>

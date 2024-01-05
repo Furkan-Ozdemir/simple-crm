@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import EmailList from "../../components/EmailList/EmailList";
 import "./Inbox.scss";
 import Profile from "../Profile/Profile";
+import { useState } from "react";
+
 export default function Inbox() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [emailBody, setEmailBody] = useState("");
+  const [topic, setTopic] = useState("");
+  const [name, setName] = useState("");
+
   useEffect(() => {
     const nav = document.getElementsByClassName("inbox__nav")[0];
     const tabs = document.getElementsByClassName("inbox__tabs")[0];
@@ -17,9 +24,13 @@ export default function Inbox() {
       "inbox__main__email__header"
     )[0];
     emailBody.style.height = `${
-      window.innerHeight - nav.offsetHeight - tabs.offsetHeight - emailHeader.offsetHeight
+      window.innerHeight -
+      nav.offsetHeight -
+      tabs.offsetHeight -
+      emailHeader.offsetHeight
     }px`;
   });
+
   return (
     <>
       <nav className="inbox__nav">
@@ -29,7 +40,13 @@ export default function Inbox() {
           className="inbox__nav__image"
         />
         <div className="inbox__nav__search">
-          <input type="search" name="search" placeholder="Search" />
+          <input
+            type="search"
+            name="search"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <button type="submit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +114,12 @@ export default function Inbox() {
       <main className="inbox__main">
         <aside className="inbox__main__aside">
           <div className="inbox__main__aside__emailList">
-            <EmailList />
+            <EmailList
+              searchTerm={searchTerm}
+              setEmailBody={setEmailBody}
+              setTopic={setTopic}
+              setName={setName}
+            />
           </div>
         </aside>
         <div className="inbox__main__email">
@@ -105,7 +127,9 @@ export default function Inbox() {
             <div className="image_and_name">
               <img src="/images/placeholder-person.jpg" alt="" width={50} />
               <div className="image_and_name__person">
-                <div className="image_and_name__person__name">John Smith</div>
+                <div className="image_and_name__person__name">
+                  {name || "No Name"}
+                </div>
                 <div className="image_and_name__person__date">
                   17.07.2021 Thursday
                 </div>
@@ -156,10 +180,11 @@ export default function Inbox() {
           </header>
           <div className="inbox__main__email__text">
             <div className="inbox__main__email__text__title">
-              RE: Hire me please
+              {topic || "Lorem ipsum dolor sit amet."}
             </div>
             <div className="inbox__main__email__text__body">
-              numquam impedit reiciendis dicta sunt, delectus voluptates blanditiis cum quas neque? Hic, iusto quas ex, repellendus eveniet et aperiam possimus adipisci neque illum quis quidem? Quam, minima dolorem eos quae tempora consequatur consequuntur facere quod sint vitae quis assumenda. Totam eveniet quos officiis possimus, ipsa nobis omnis cumque impedit magnam consequuntur veritatis dolores sed repellendus deleniti non et nihil molestiae exercitationem, repellat veniam. Expedita veniam, tempore obcaecati quasi, quidem sit suscipit odit quaerat amet aperiam rem dolore consectetur natus aut magni repellendus dolorem, nostrum ea vitae tempora. Voluptas assumenda deleniti voluptates obcaecati odit voluptatibus earum molestiae, nihil nostrum maiores laborum, labore a aliquam aliquid harum minus enim, necessitatibus libero id. Culpa q, deserunt? Delectus deserunt unde ad et commodi omnis quisquam temporibus expedita officia natus soluta autem voluptas, maiores assumen
+              {emailBody ||
+                "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum facere porro dicta architecto minus obcaecati illo dolores est consequuntur distinctio, quaerat tempora nostrum rem accusamus ullam eaque sunt repellat voluptate earum exercitationem quisquam natus? Iusto error autem omnis, minus laboriosam nesciunt libero, maiores dicta similique, necessitatibus aut recusandae repudiandae incidunt!"}
             </div>
           </div>
         </div>

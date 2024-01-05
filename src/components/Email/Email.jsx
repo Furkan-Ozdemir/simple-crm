@@ -1,7 +1,21 @@
+/* eslint-disable react/prop-types */
 import "./Email.scss";
-export default function Email() {
+export default function Email({
+  name,
+  topic,
+  email,
+  setEmailBody,
+  body,
+  setTopic,
+  setName,
+}) {
+  const handleEmail = () => {
+    setEmailBody(body);
+    setTopic(topic);
+    setName(name);
+  };
   return (
-    <div className="email">
+    <div className="email" onClick={handleEmail}>
       <div className="email__date">6d ago</div>
       <div className="email__star">
         <svg
@@ -20,9 +34,9 @@ export default function Email() {
           <img src="/images/placeholder-person.jpg" alt="" />
         </div>
         <div className="email__sender__fields">
-          <div className="email__sender__fields__name">John Smith</div>
-          <div className="email__sender__fields__topic">Re: Hire me </div>
-          <div className="email__sender__fields__email">john@email.com</div>
+          <div className="email__sender__fields__name">{name}</div>
+          <div className="email__sender__fields__topic">{topic} </div>
+          <div className="email__sender__fields__email">{email}</div>
         </div>
       </div>
     </div>

@@ -29,6 +29,10 @@
         &:focus {
           outline: none;
           width: 400px;
+
+          @media (width <= 800px) {
+            width: 200px;
+          }
         }
       }
       button {
@@ -98,7 +102,7 @@
         .image_and_name {
           place-self: center start;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 100px 1fr;
           img {
             border-radius: 50%;
             aspect-ratio: 1/1;
@@ -142,12 +146,18 @@
               font-size: 1.5rem;
               font-weight: 500;
               text-wrap: nowrap;
+              @media (width <= 932px) {
+                display: none;
+              }
             }
           }
         }
       }
       &__text {
         padding-inline: 11.8rem;
+        @media (width <= 1024px) {
+          padding-inline: 5rem;
+        }
         &__title {
           font-size: 2rem;
           font-weight: bold;
