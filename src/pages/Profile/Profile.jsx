@@ -42,7 +42,7 @@ export default function Profile() {
   return (
     <>
       <div className={`count`} onClick={() => setShowProfile(!showProfile)}>
-        6
+        {currentUser?.email.substring(0, 1) || "A"}
       </div>
       <div className={`${showProfile ? "show" : "hide"} profile`}>
         <p className="profile__email">
