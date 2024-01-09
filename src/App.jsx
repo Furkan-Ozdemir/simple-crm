@@ -11,6 +11,7 @@ import { auth } from "./firebase";
 import { useEffect } from "react";
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 import { Navigate } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const ProtectedRoute = ({ element, redirectTo }) => {
   const isLoggedIn = sessionStorage.getItem("loggedin") === "true";
@@ -28,6 +29,7 @@ function App() {
   return (
     <>
       <ToastContainer />
+      <SpeedInsights />
       <AuthProvider value={{ currentUser, timeActive, setTimeActive }}>
         <Routes>
           <Route path="/" element={<Login />} />
