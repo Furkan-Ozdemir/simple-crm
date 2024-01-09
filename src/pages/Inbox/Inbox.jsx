@@ -3,8 +3,9 @@ import EmailList from "../../components/EmailList/EmailList";
 import "./Inbox.scss";
 import Profile from "../Profile/Profile";
 import { useState } from "react";
-import { ref, set, push } from "firebase/database";
+import { ref, set, push, get } from "firebase/database";
 import { database } from "../../firebase";
+import { toast } from "react-toastify";
 
 export default function Inbox() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,14 +13,60 @@ export default function Inbox() {
   const [topic, setTopic] = useState("");
   const [name, setName] = useState("");
 
-  const writeEmailData = () => {
-    const emailRef = push(ref(database, "emails/"));
+  const writeEmailData = async () => {
+    const emailsRef = ref(database, "emails/");
+    const snapshot = await get(emailsRef);
 
+    if (snapshot.exists()) {
+      const emails = snapshot.val();
+      for (let id in emails) {
+        if (
+          emails[id].emailBody === emailBody &&
+          emails[id].topic === topic &&
+          emails[id].name === name
+        ) {
+          toast.error(
+            <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+              Email already saved to database !
+            </span>,
+            {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "light",
+              pauseOnFocusLoss: true,
+            }
+          );
+          return;
+        }
+      }
+    }
+
+    const emailRef = push(emailsRef);
     set(emailRef, {
       emailBody: emailBody,
       topic: topic,
       name: name,
     });
+    toast.success(
+      <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+        Successfully saved email !
+      </span>,
+      {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        toastId: "Successfully saved email",
+        pauseOnFocusLoss: true,
+      }
+    );
   };
 
   useEffect(() => {
@@ -148,7 +195,10 @@ export default function Inbox() {
               </div>
             </div>
             <div className="inbox__main__email__header__actions">
-              <div className="inbox__main__email__header__actions__svg">
+              <div
+                className="inbox__main__email__header__actions__svg"
+                onClick={writeEmailData}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -159,7 +209,7 @@ export default function Inbox() {
                 >
                   <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
                 </svg>
-                <span onClick={writeEmailData}>Sent To CRM</span>
+                <span>Sent To CRM</span>
               </div>
               <div className="inbox__main__email__header__actions__svg">
                 <svg
